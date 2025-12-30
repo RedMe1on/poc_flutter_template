@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
+import '../pages/product_detail.dart';
+import '../services/api.dart';
 import '../models/product.dart';
 import '../widgets/product_card.dart';
 import '../widgets/loading_indicator.dart';

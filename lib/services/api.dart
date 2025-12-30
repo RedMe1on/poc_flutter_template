@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../constants/api_constants.dart';
+import '../constants/api.dart';
 import '../models/product.dart';
 
 class ApiService {

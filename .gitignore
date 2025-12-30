@@ -7,7 +7,7 @@
 .buildlog/
 .history
 .idea
-
+*.g.dart
 
 # Flutter repo-specific
 /bin/cache/

@@ -1,4 +1,4 @@
-name: poc_app
+name: poc_flutter_template
 description: Flutter POC App
 publish_to: 'none'
 version: 1.0.0+1
@@ -22,6 +22,9 @@ dependencies:
   
   # Для удобной работы с JSON
   json_annotation: ^4.8.0
+
+   # Для навигации с поддержкой web
+  go_router: ^13.0.0  # Лучшая для web routing
 
 dev_dependencies:
   flutter_test:
