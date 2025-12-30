@@ -10,12 +10,18 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_web_plugins:
+      sdk: flutter
+
   cupertino_icons: ^1.0.8
   # HTTP клиент
   dio: ^5.0.0
   
-  # State Management (простейший)
-  provider: ^6.0.0
+  # Адаптивный дизайн
+  responsive_framework: ^0.2.0
+  
+  # # State Management (простейший)
+  # provider: ^6.0.0
   
   # Индикатор загрузки
   shimmer: ^3.0.0

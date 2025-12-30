@@ -1,8 +1,11 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+// import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:poc_flutter_template/router.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 
 void main() {
+  // setUrlStrategy(PathUrlStrategy());
   runApp(const MyApp());
 }
 
@@ -23,6 +26,22 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+      builder: (context, child) => ResponsiveWrapper.builder(
+        child,
+        maxWidth: 1200,
+        minWidth: 450,
+        defaultScale: true,
+        breakpoints: [
+          const ResponsiveBreakpoint.resize(450, name: MOBILE),
+          const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+          const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+          const ResponsiveBreakpoint.autoScale(1200, name: 'XL'),
+        ],
+        background: Container(
+          color: Theme.of(context).colorScheme.background,
+        ),
+      ),
     );
+    
   }
 }
