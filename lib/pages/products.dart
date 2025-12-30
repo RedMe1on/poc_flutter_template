@@ -65,10 +65,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             icon: const Icon(Icons.refresh),
             onPressed: _refreshProducts,
           ),
-          IconButton(
-            icon: const Icon(Icons.grid_view),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.grid_view), onPressed: () {}),
         ],
       ),
       body: Padding(
@@ -88,14 +85,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
             icon: const Icon(Icons.refresh),
             onPressed: _refreshProducts,
           ),
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
         ],
       ),
       body: Padding(
@@ -105,7 +96,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Widget _buildProductList(BuildContext context, {required int crossAxisCount}) {
+  Widget _buildProductList(
+    BuildContext context, {
+    required int crossAxisCount,
+  }) {
     return FutureBuilder<List<Product>>(
       future: _productsFuture,
       builder: (context, snapshot) {
@@ -129,8 +123,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   Text(
                     'Error loading products',
                     style: TextStyle(
-                      fontSize: DeviceUtils.adaptiveTextSize(context,
-                          mobile: 16, tablet: 18, desktop: 20),
+                      fontSize: DeviceUtils.adaptiveTextSize(
+                        context,
+                        mobile: 16,
+                        tablet: 18,
+                        desktop: 20,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -138,8 +136,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     snapshot.error.toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: DeviceUtils.adaptiveTextSize(context,
-                          mobile: 12, tablet: 14, desktop: 14),
+                      fontSize: DeviceUtils.adaptiveTextSize(
+                        context,
+                        mobile: 12,
+                        tablet: 14,
+                        desktop: 14,
+                      ),
                       color: Colors.grey,
                     ),
                   ),
@@ -155,7 +157,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
         }
 
         final products = snapshot.data!;
-        
+
         if (crossAxisCount > 1) {
           return _buildGridView(products, crossAxisCount);
         } else {
@@ -193,7 +195,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Widget _buildProductCard(BuildContext context, Product product, {bool isList = true}) {
+  Widget _buildProductCard(
+    BuildContext context,
+    Product product, {
+    bool isList = true,
+  }) {
     if (isList) {
       return Card(
         margin: const EdgeInsets.only(bottom: 8),
@@ -208,11 +214,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  width: 60,
-                  height: 60,
-                  color: Colors.grey[200],
-                ),
+                placeholder: (context, url) =>
+                    Container(width: 60, height: 60, color: Colors.grey[200]),
                 errorWidget: (context, url, error) => Container(
                   width: 60,
                   height: 60,
@@ -227,8 +230,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: DeviceUtils.adaptiveTextSize(context,
-                  mobile: 14, tablet: 15, desktop: 16),
+              fontSize: DeviceUtils.adaptiveTextSize(
+                context,
+                mobile: 14,
+                tablet: 15,
+                desktop: 16,
+              ),
             ),
           ),
           subtitle: Column(
@@ -240,8 +247,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.primary,
-                  fontSize: DeviceUtils.adaptiveTextSize(context,
-                      mobile: 14, tablet: 15, desktop: 16),
+                  fontSize: DeviceUtils.adaptiveTextSize(
+                    context,
+                    mobile: 14,
+                    tablet: 15,
+                    desktop: 16,
+                  ),
                 ),
               ),
               const SizedBox(height: 4),
@@ -250,15 +261,23 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   Icon(
                     Icons.star,
                     color: Colors.amber[600],
-                    size: DeviceUtils.adaptiveTextSize(context,
-                        mobile: 14, tablet: 15, desktop: 16),
+                    size: DeviceUtils.adaptiveTextSize(
+                      context,
+                      mobile: 14,
+                      tablet: 15,
+                      desktop: 16,
+                    ),
                   ),
                   const SizedBox(width: 4),
                   Text(
                     '${product.rating.rate} (${product.rating.count})',
                     style: TextStyle(
-                      fontSize: DeviceUtils.adaptiveTextSize(context,
-                          mobile: 12, tablet: 13, desktop: 14),
+                      fontSize: DeviceUtils.adaptiveTextSize(
+                        context,
+                        mobile: 12,
+                        tablet: 13,
+                        desktop: 14,
+                      ),
                     ),
                   ),
                 ],
@@ -267,17 +286,21 @@ class _ProductListScreenState extends State<ProductListScreen> {
           ),
           trailing: Icon(
             Icons.chevron_right,
-            size: DeviceUtils.adaptiveTextSize(context,
-                mobile: 20, tablet: 22, desktop: 24),
+            size: DeviceUtils.adaptiveTextSize(
+              context,
+              mobile: 20,
+              tablet: 22,
+              desktop: 24,
+            ),
           ),
-          onTap: () => context.push('/products/${product.id}'),
+          onTap: () => context.go('/products/${product.id}'),
         ),
       );
     } else {
       return Card(
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: () => context.push('/products/${product.id}'),
+          onTap: () => context.go('/products/${product.id}'),
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Column(
@@ -294,9 +317,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         width: double.infinity,
                         height: DeviceUtils.isDesktop(context) ? 200 : 150,
                         fit: BoxFit.contain,
-                        placeholder: (context, url) => Container(
-                          color: Colors.grey[200],
-                        ),
+                        placeholder: (context, url) =>
+                            Container(color: Colors.grey[200]),
                         errorWidget: (context, url, error) => Container(
                           color: Colors.grey[200],
                           child: const Center(child: Icon(Icons.error)),
@@ -306,7 +328,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Название
                 Text(
                   product.title,
@@ -314,47 +336,67 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: DeviceUtils.adaptiveTextSize(context,
-                        mobile: 14, tablet: 15, desktop: 16),
+                    fontSize: DeviceUtils.adaptiveTextSize(
+                      context,
+                      mobile: 14,
+                      tablet: 15,
+                      desktop: 16,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                
+
                 // Цена
                 Text(
                   '\$${product.price.toStringAsFixed(2)}',
                   style: TextStyle(
-                    fontSize: DeviceUtils.adaptiveTextSize(context,
-                        mobile: 16, tablet: 17, desktop: 18),
+                    fontSize: DeviceUtils.adaptiveTextSize(
+                      context,
+                      mobile: 16,
+                      tablet: 17,
+                      desktop: 18,
+                    ),
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 const SizedBox(height: 8),
-                
+
                 // Рейтинг
                 Row(
                   children: [
                     Icon(
                       Icons.star,
                       color: Colors.amber[600],
-                      size: DeviceUtils.adaptiveTextSize(context,
-                          mobile: 16, tablet: 17, desktop: 18),
+                      size: DeviceUtils.adaptiveTextSize(
+                        context,
+                        mobile: 16,
+                        tablet: 17,
+                        desktop: 18,
+                      ),
                     ),
                     const SizedBox(width: 4),
                     Text(
                       product.rating.rate.toString(),
                       style: TextStyle(
-                        fontSize: DeviceUtils.adaptiveTextSize(context,
-                            mobile: 14, tablet: 15, desktop: 16),
+                        fontSize: DeviceUtils.adaptiveTextSize(
+                          context,
+                          mobile: 14,
+                          tablet: 15,
+                          desktop: 16,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 4),
                     Text(
                       '(${product.rating.count})',
                       style: TextStyle(
-                        fontSize: DeviceUtils.adaptiveTextSize(context,
-                            mobile: 12, tablet: 13, desktop: 14),
+                        fontSize: DeviceUtils.adaptiveTextSize(
+                          context,
+                          mobile: 12,
+                          tablet: 13,
+                          desktop: 14,
+                        ),
                         color: Colors.grey,
                       ),
                     ),
@@ -371,8 +413,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       child: Text(
                         product.category,
                         style: TextStyle(
-                          fontSize: DeviceUtils.adaptiveTextSize(context,
-                              mobile: 10, tablet: 11, desktop: 12),
+                          fontSize: DeviceUtils.adaptiveTextSize(
+                            context,
+                            mobile: 10,
+                            tablet: 11,
+                            desktop: 12,
+                          ),
                         ),
                       ),
                     ),
@@ -413,22 +459,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       color: Colors.white,
                     ),
                     const SizedBox(height: 12),
-                    Container(
-                      height: 16,
-                      color: Colors.white,
-                    ),
+                    Container(height: 16, color: Colors.white),
                     const SizedBox(height: 8),
-                    Container(
-                      height: 14,
-                      width: 80,
-                      color: Colors.white,
-                    ),
+                    Container(height: 14, width: 80, color: Colors.white),
                     const SizedBox(height: 8),
-                    Container(
-                      height: 14,
-                      width: 60,
-                      color: Colors.white,
-                    ),
+                    Container(height: 14, width: 60, color: Colors.white),
                   ],
                 ),
               ),
@@ -448,37 +483,18 @@ class _ProductListScreenState extends State<ProductListScreen> {
               margin: const EdgeInsets.only(bottom: 8),
               child: ListTile(
                 contentPadding: const EdgeInsets.all(12),
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  color: Colors.white,
-                ),
-                title: Container(
-                  height: 16,
-                  color: Colors.white,
-                ),
+                leading: Container(width: 60, height: 60, color: Colors.white),
+                title: Container(height: 16, color: Colors.white),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 4),
-                    Container(
-                      height: 14,
-                      width: 80,
-                      color: Colors.white,
-                    ),
+                    Container(height: 14, width: 80, color: Colors.white),
                     const SizedBox(height: 4),
-                    Container(
-                      height: 12,
-                      width: 100,
-                      color: Colors.white,
-                    ),
+                    Container(height: 12, width: 100, color: Colors.white),
                   ],
                 ),
-                trailing: Container(
-                  width: 24,
-                  height: 24,
-                  color: Colors.white,
-                ),
+                trailing: Container(width: 24, height: 24, color: Colors.white),
               ),
             ),
           );

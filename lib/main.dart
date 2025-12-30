@@ -1,13 +1,16 @@
-// lib/main.dart
+
 import 'package:flutter/material.dart';
-// import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:poc_flutter_template/router.dart';
+import 'package:poc_flutter_template/utils/url_wrapper.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
+
 void main() {
-  // setUrlStrategy(PathUrlStrategy());
+  // Убираем # из URL только в веб-версии
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
